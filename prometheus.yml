@@ -2,6 +2,6 @@ global:
   scrape_interval: 15s
 
 scrape_configs:
-  - job_name: 'node-exporter5'
+  - job_name: 'node-exporter6'
     static_configs:
       - targets: ['node-exporter:9100']
