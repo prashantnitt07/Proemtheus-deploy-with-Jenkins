@@ -1,0 +1,36 @@
+pipeline {
+agent any
+
+
+stages {
+
+    stage('Clean Workspace') {
+        steps {
+            deleteDir()
+        }
+    }
+
+    stage('Clone Repo') {
+        steps {
+            git branch: 'main', url: 'https://github.com/prashantnitt07/Proemtheus-deploy-with-Jenkins.git'
+        }
+    }
+
+    stage('Deploy') {
+        steps {
+            sh '''
+            echo "Current directory:"
+            pwd
+            ls -l
+
+            docker-compose down || true
+            docker-compose up -d
+
+            docker ps
+            '''
+        }
+    }
+}
+
+
+}
